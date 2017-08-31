@@ -1,0 +1,125 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.modleBg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    background: #000;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 100000;
+    display: none;
+}
+#addSample{
+    width: 1100px;
+    padding: 10px;
+    height:700px;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0);
+    background-color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    left:50%;
+    margin-left: -550px;
+    top:100px;
+    z-index: 10;
+    display: none;
+}
+#addSample td{
+    　vertical-align: middle !important;
+}
+#addSample th{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    background: #555;
+    color:#fff
+}
+#editSample{
+    width: 1600px;
+    padding: 10px;
+    height:860px;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0);
+    background-color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    left:50%;
+    margin-left: -750px;
+    top:60px;
+    z-index: 10;
+    display: none;
+}
+.pull-left{
+    font-size: 12px;
+}
+.pull-right{
+    font-size: 12px;
+}
+#addSampleProcessing{
+    width: 1100px;
+    padding: 10px;
+    height:500px;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0);
+    background-color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    left:50%;
+    margin-left: -550px;
+    top:200px;
+    z-index: 11;
+    display: none;
+    -webkit-box-shadow:0 0 10px #888;
+    -moz-box-shadow:0 0 10px #888;
+    box-shadow:0 0 10px #888;
+}
+#addSampleProcessing th{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    background: #555;
+    color:#fff
+}
+#addSampleProcessing td{
+    　vertical-align: middle !important;
+}
+ #SampleProContent{
+     width: 1100px;
+     padding: 10px;
+     height:500px;
+     overflow: auto;
+     background: rgba(0, 0, 0, 0);
+     background-color: #fff;
+     border-radius: 5px;
+     position: absolute;
+     left:50%;
+     margin-left: -550px;
+     top:200px;
+     z-index: 11;
+     display: none;
+     -webkit-box-shadow:0 0 10px #888;
+     -moz-box-shadow:0 0 10px #888;
+     box-shadow:0 0 10px #888;
+ }
+ .sampleBtn{
+     width: 150px;
+     height:60px;
+     border-radius: 6px;
+     background: #eee;
+     text-align: center;
+     line-height: 55px;
+     font-size:20px;
+     margin: 0 50px;
+     box-shadow:0 0 10px #bbb;
+     transition: box-shadow 1s,color 1s,background-color 1s;;
+ }
+.sampleBtn:hover{
+    box-shadow:0 0 15px #888;
+    color:#f0f0f0;
+    background-color: #555;
+    cursor: pointer;
+}

@@ -1,0 +1,10 @@
+.btnVerticalAlign {
+    margin: 20px;
+}
+.mainbox{
+    width: 800px;
+    height:800px;
+    overflow-y: auto;
+    margin:auto;
+    overflow-x: hidden;
+}

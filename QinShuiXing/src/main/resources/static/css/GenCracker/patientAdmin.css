@@ -1,0 +1,67 @@
+/*align button and text in the middle*/
+.btnVerticalAlign {
+    margin: 20px;
+}
+table th {
+    align: left;
+}
+table td {
+    vertical-align: middle !important;
+    text-align: left;
+}
+tfoot input {
+    width: 80%;
+    padding: 3px;
+}
+
+a.btn.btn-default.form-control.btnVerticalAlign{
+    background-color: #ddd;
+}
+.op-navbar{
+    margin-left: -60px;
+    margin-top: -5px;
+}
+
+.deadLine{
+    color:red;
+}
+
+#searchBox{
+    width: 100%;
+}
+#searchBox>div{
+    height: 40px;
+    float: left;
+    line-height: 32px;
+    margin-left: 10px;
+    margin-top: 5px;
+
+}
+#searchBox>div>input{
+    width: 100px;
+    height: 30px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 28px;
+}
+.searchBox{
+    width: 100%;
+}
+.searchBox>div{
+    height: 40px;
+    float: left;
+    line-height: 32px;
+    margin-left: 10px;
+    margin-top: 5px;
+
+}
+.searchBox>div>input{
+    width: 160px;
+    height: 30px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 28px;
+
+}

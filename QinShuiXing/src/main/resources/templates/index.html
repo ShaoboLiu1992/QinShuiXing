@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="../static/Portal/css/bootstrap.css" th:href="@{/Portal/css/bootstrap.css}"/>
+		<script src="../static/Portal/js/jquery-2.2.1.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/jquery-2.2.1.js}"></script>
+		<script src="../static/Portal/js/bootstrap.min.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/bootstrap.min.js}"></script>
+		<!--<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>-->
+		<script src="../static/Portal/js/vue.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/vue.js}"></script>
+		<script src="../static/Portal/js/main.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/main.js}"></script>
+
+		<title></title>
+		<style>
+			.shuoming{
+				width: 400px;
+				position: absolute;
+				top:50px;
+				left: -400px;
+			}
+			.shuoming h4{
+				font-weight: bold;
+			}
+			.shuoming p{
+				text-indent: 2em;
+				color:#555;
+				font-size: 1.2em;
+			}
+			.shuoming img{
+				width: 100px;
+				position: absolute;
+				top:0;
+				right:-100px;
+			}
+			.shuoming img:hover{
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body style="background: url(Portal/img/bg.jpg);">
+
+	<div class="shuoming">
+		<h4>平均亲水性值为2～3：</h4>
+		<p>说明该多肽的溶解性非常的好；即使多肽短暂的与空气接触，也有吸潮的可能。为解决这个问题，强耀生物建立了能将空气湿度大大降低的GMP级实验室，多肽的分装工作都在此实验室中完成；
+			同时，在发货的时候我们也会在多肽包装盒内放置高效的吸潮剂，大限度的降低了多肽吸潮的可能性。</p>
+		<h4>平均亲水性值为0～2：</h4>
+		<p>一般来讲，这样的多肽在水中溶解性都很好；无需添加助溶剂亦可取得较好的溶解效果。</p>
+		<h4>平均亲水性值为=0：</h4>
+		<p>多肽在水中的溶解性一般；可以通过以下方法来增加多肽的溶解性：1调整溶液的PH助溶； 2 超声助溶； 3 调整溶液温度（≤30℃）助溶； 4 添加助溶剂（如DMSO，DMF等），建议先将肽溶于有机溶剂，再缓慢加入水或其它缓冲溶液。
+			5 对于碱性肽，建议用10%乙酸溶解，对于酸性肽，建议用10%NH4HCO3溶解。</p>
+		<h4>平均亲水性值为0～-2：</h4>
+		<p>多肽在水中的溶解性较差；您可以利用以上5种方法助溶，同时也可在多肽序列中增加亲水性氨基酸，以增加多肽的亲水性。</p>
+		<h4>平均亲水性值为-2～-3:</h4>
+		<p>多肽在水中的溶解性非常的差；导致多肽很难纯化，多肽纯度亦很难提高，客户在运用这种多肽的时候，也会遇到多肽异常难溶的问题。遇到这种情况，我们一般会建议客户更换序列或在现有序列中加入亲水性氨基酸。</p>
+		<img src="Portal/img/dog.png" alt="" th:src="@{/Portal/img/dog.png}" />
+	</div>
+
+		<div style="padding: 100px 100px 10px;" id="app" >
+			<div class="bs-example bs-example-form" role="form">
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3">
+						<div class="input-group has-success">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+									{{url}}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li v-for="(value, key, index) in urlList"><a v-on:click="url=value,urlindex=key" >{{value}}</a></li>
+								</ul>
+							</div>
+							<input type="text" class="form-control msg" v-model="msg" />
+							<span class="input-group-btn">
+								<button class="btn btn-success search"  v-on:click="search"  type="button">
+									search
+								</button>
+							</span>
+
+						</div>
+
+						<!-- /input-group -->
+					</div>
+					<!-- /.col-lg-6 -->
+				</div>
+				<!-- /.row -->
+			</div>
+
+			<div class="row " style="margin-top: 20px;">
+				<div class="col-lg-2 col-lg-offset-4" >
+					<div class="form-group text-right" v-if="reversedMessage" v-for="(value,index) in reversedMessage">
+						<div class="col-lg-10">
+							<input type="" class="form-control value" v-bind:value="value" />
+						</div>
+						<i class="glyphicon glyphicon-arrow-right" style="height: 30px;line-height: 30px;"></i>
+					</div>
+					
+				</div>
+				<div class="col-lg-2 msgbox" >
+				</div>
+				
+			</div>
+
+			<div>
+				<textarea class="col-lg-4 col-lg-offset-4" rows="3" cols="20"  style="display: none"></textarea>
+			</div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="gene.mapper.Ext.UserMapperExt" >
+    <resultMap id="BaseResultMap" type="gene.model.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <id column="userName" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="identity" property="identity" jdbcType="INTEGER" />
+        <result column="realName" property="realname" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="signature" property="signature" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+        <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, userName, password, identity, realName, mobile, email, signature,status, createDate, modifyDate
+    </sql>
+    <select id="getUserByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where userName = #{userName}
+    </select>
+
+    <select id="getUsersList" resultType="java.util.HashMap">
+        select id,userName,identity,realName,mobile,email,status,createDate,signature from User where
+        1=1
+        <if test="status != -1">
+            and status = #{status}
+        </if>
+        <if test="userName != null">
+            and userName like '%${userName}%'
+        </if>
+        <if test="mobile != null">
+            and mobile like '%${mobile}%'
+        </if>
+        <if test="email != null">
+            and email like '%${email}%'
+        </if>
+        <if test="type != null">
+            and identity = #{type}
+        </if>
+        <if test="realName != null">
+            and realName like '%${realName}%'
+        </if>
+        ORDER BY createDate DESC
+        limit #{pageStart}, #{pageEnd}
+    </select>
+
+    <select id="getUsersListCount" resultType="Integer">
+        select count(1) from User where
+        1=1
+        <if test="status != -1">
+            and status = #{status}
+        </if>
+        <if test="userName != null">
+            and userName like '%${userName}%'
+        </if>
+        <if test="mobile != null">
+            and mobile like '%${mobile}%'
+        </if>
+        <if test="email != null">
+            and email like '%${email}%'
+        </if>
+        <if test="type != null">
+            and identity = #{type}
+        </if>
+        <if test="realName != null">
+            and realName like '%${realName}%'
+        </if>
+    </select>
+
+    <update id="updateUserSelected">
+        update user
+        <set >
+            <if test="username != null" >
+                userName = #{username},
+            </if>
+            <if test="password != null" >
+                password = #{password},
+            </if>
+            <if test="identity != null" >
+                identity = #{identity},
+            </if>
+            <if test="realname != null" >
+                realName = #{realname},
+            </if>
+            <if test="mobile != null" >
+                mobile = #{mobile},
+            </if>
+            <if test="email != null" >
+                email = #{email},
+            </if>
+            <if test="signature != null" >
+                signature = #{signature},
+            </if>
+            <if test="status != null" >
+                status = #{status},
+            </if>
+            <if test="createdate != null" >
+                createDate = #{createdate},
+            </if>
+            <if test="modifydate != null" >
+                modifyDate = #{modifydate},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

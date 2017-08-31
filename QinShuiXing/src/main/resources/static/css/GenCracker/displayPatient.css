@@ -1,0 +1,6 @@
+.table>tbody>tr>td {
+    height: 50px;
+    line-height: 20px;
+    overflow: hidden;
+    vertical-align: middle;
+}

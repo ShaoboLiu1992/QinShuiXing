@@ -1,0 +1,140 @@
+.box {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.changebox {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ADADAD;
+}
+.red {
+    color: #21a9e1;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h2 {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px dotted #bbb;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.changebox input {
+    width: 90%;
+    height: 30px;
+    background: #fcfcfc;
+    border: 1px solid #ddd;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1) inset;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1) inset;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1) inset;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    color: #888;
+    font-size: 16px;
+    padding: 4px 6px;
+    margin-bottom: 8px;
+}
+
+.changebox input:focus {
+    border: 1px solid #ccc;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.changebox label {
+    font-size: 16px;
+    text-align: left;
+    line-height: 40px;
+    color:#303641;
+    font-weight: 600;
+    margin: 0 15px;
+    float: left;
+}
+#error{
+    width: 100%;
+    height: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #d50d24;
+}
+.changebox form {
+    padding: 20px 50px 40px 50px;
+    background: #f8f8f8;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -moz-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .3);
+    text-align: center;
+}
+
+.changebox label span {
+    font-style: italic;
+}
+
+.changebox input:-moz-placeholder {
+    color: #aaa;
+}
+
+.changebox input:-ms-input-placeholder {
+    color: #aaa;
+}
+
+.changebox input::-webkit-input-placeholder {
+    color: #aaa;
+}
+
+.changebox form button {
+    cursor: pointer;
+    width: 60%;
+    height: 42px;
+    margin-top: 25px;
+    padding: 0;
+    background: #303641;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 0;
+    -moz-box-shadow: 0 15px 30px 0 rgba(255, 255, 255, .1) inset;
+    -webkit-box-shadow: 0 15px 30px 0 rgba(255, 255, 255, .1) inset;
+    box-shadow: 0 15px 30px 0 rgba(255, 255, 255, .1) inset;
+    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    -o-transition: all .2s;
+    -moz-transition: all .2s;
+    -webkit-transition: all .2s;
+    -ms-transition: all .2s;
+}
+
+.changebox form button:hover {
+    -moz-box-shadow: 0 -15px 30px 0 rgba(255, 255, 255, .05) inset;
+    -webkit-box-shadow: 0 -15px 30px 0 rgba(255, 255, 255, .05) inset;
+    box-shadow: 0 -15px 30px 0 rgba(255, 255, 255, .05) inset;
+}
+
+.changebox form button:active {
+    -moz-box-shadow: 0 -15px 30px 0 rgba(255, 255, 255, .05) inset, 0 5px 8px 0 rgba(0, 0, 0, .1) inset;
+    -webkit-box-shadow: 0 -15px 30px 0 rgba(255, 255, 255, .05) inset, 0 5px 8px 0 rgba(0, 0, 0, .1) inset;
+    box-shadow: 0 -15px 30px 0 rgba(255, 255, 255, .05) inset, 0 5px 8px 0 rgba(0, 0, 0, .1) inset;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content=""/>
+
+    <title>Neoantigen | SideBar</title>
+
+    <link rel="stylesheet" href="../../static/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css"
+          th:href="@{/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css}"/>
+    <link rel="stylesheet" href="../../static/css/font-icons/entypo/css/entypo.css"
+          th:href="@{/css/font-icons/entypo/css/entypo.css}"/>
+    <link rel="stylesheet" href="../../static/css/frontEnd/NotoSans.css" th:href="@{/css/frontEnd/NotoSans.css}"/>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../../static/css/neon-core.css" th:href="@{/css/neon-core.css}"/>
+    <link rel="stylesheet" href="../../static/css/neon-theme.css" th:href="@{/css/neon-theme.css}"/>
+    <link rel="stylesheet" href="../../static/css/neon-forms.css" th:href="@{/css/neon-forms.css}"/>
+    <link rel="stylesheet" href="../../static/css/custom.css" th:href="@{/css/custom.css}"/>
+
+    <script src="../../static/js/jquery-1.11.0.min.js" th:src="@{/js/jquery-1.11.0.min.js}"></script>
+    <script>$.noConflict();</script>
+
+    <!--[if lt IE 9]>
+    <script src="../../static/js/ie8-responsive-file-warning.js"
+            th:src="@{/js/ie8-responsive-file-warning.js}"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../../static/js/frontEnd/html5shiv.js" th:src="@{/js/frontEnd/html5shiv.js}"></script>
+    <script src="../../static/js/frontEnd/respond.min.js" th:src="@{/js/frontEnd/respond.min.js}"></script>
+    <![endif]-->
+</head>
+
+<body class="page-body  page-fade">
+
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+    <div class="sidebar-menu" th:fragment="sidebar">
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                <!-- logo -->
+                <div class="logo">
+                    <a><img src="../static/Portal/img/logo.png" width="150px" th:src="@{/Portal/img/logo.png}"/></a>
+                </div>
+
+                <!-- logo collapse icon -->
+                <div class="sidebar-collapse">
+                    <a href="#" class="sidebar-collapse-icon">
+                        <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+
+                <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+                <div class="sidebar-mobile-menu visible-xs">
+                    <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+
+            </header>
+
+            <ul id="main-menu" class="main-menu">
+                <!-- step为[10,20)属于受检者模块 -->
+                <li th:class="${urlType}=='UserManagement' ? 'active opened active' : ''">
+                    <a href="#">
+                        <i class="entypo-layout"></i>
+                        <span class="title">菜单选择</span>
+                    </a>
+                    <ul>
+                        <li th:class="${step}=='applicationList' ? 'active' : ''">
+                            <a target="_self" href="../applicationList.html" th:href="@{/applicationList}">
+                                <span class="title">应聘信息管理</span>
+                            </a>
+                        </li>
+                        <li th:class="${step}=='recruiterList' ? 'active' : ''">
+                            <a target="_self" href="../recruiterList.html" th:href="@{/recruiterList}">
+                                <span class="title">招聘信息管理</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- Imported styles on this page -->
+<link rel="stylesheet" href="../../static/js/jvectormap/jquery-jvectormap-1.2.2.css"
+      th:href="@{/js/jvectormap/jquery-jvectormap-1.2.2.css}"/>
+<link rel="stylesheet" href="../../static/js/rickshaw/rickshaw.min.css" th:href="@{/js/rickshaw/rickshaw.min.css}"/>
+
+<!-- Bottom scripts (common) -->
+<script src="../../static/js/gsap/main-gsap.js" th:src="@{/js/gsap/main-gsap.js}"></script>
+<script src="../../static/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"
+        th:src="@{/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js}"></script>
+<script src="../../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+<script src="../../static/js/joinable.js" th:src="@{/js/joinable.js}"></script>
+<script src="../../static/js/resizeable.js" th:src="@{/js/resizeable.js}"></script>
+<script src="../../static/js/neon-api.js" th:src="@{/js/neon-api.js}"></script>
+<script src="../../static/js/jvectormap/jquery-jvectormap-1.2.2.min.js"
+        th:src="@{/js/jvectormap/jquery-jvectormap-1.2.2.min.js}"></script>
+
+
+<!-- Imported scripts on this page -->
+<script src="../../static/js/jvectormap/jquery-jvectormap-europe-merc-en.js"
+        th:src="@{/js/jvectormap/jquery-jvectormap-europe-merc-en.js}"></script>
+<script src="../../static/js/rickshaw/vendor/d3.v3.js" th:src="@{/js/rickshaw/vendor/d3.v3.js}"></script>
+<script src="../../static/js/rickshaw/rickshaw.min.js" th:src="@{/js/rickshaw/rickshaw.min.js}"></script>
+<script src="../../static/js/toastr.js" th:src="@{/js/toastr.js}"></script>
+
+
+<!-- JavaScripts initializations and stuff -->
+<script src="../../static/js/neon-custom.js" th:src="@{/js/neon-custom.js}"></script>
+
+
+<!-- Demo Settings -->
+<script src="../../static/js/neon-demo.js" th:src="@{/js/neon-demo.js}"></script>
+
+</body>
+</html>

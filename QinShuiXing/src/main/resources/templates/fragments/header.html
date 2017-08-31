@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Header Fragment</title>
+    <script src="../../static/js/jquery-2.1.0.min.js" th:src="@{/js/jquery-2.1.0.min.js}"></script>
+    <link rel="shortcut icon" type="image/png" href="../../static/Portal/img/neoantigenTitle.png" th:href="@{/Portal/img/neoantigenTitle.png}"/>
+    <link rel="stylesheet" type="text/css" href="../../static/Portal/css/base.css" th:href="@{/Portal/css/base.css}"/>
+    <link rel="stylesheet" type="text/css" href="../../static/Portal/css/bootstrap.css" th:href="@{/Portal/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" href="../../static/Portal/css/style.css" th:href="@{/Portal/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" href="../../static/Portal/css/load.css" th:href="@{/Portal/css/load.css}"/>
+    <script src="../../static/Portal/js/jquery.min.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/jquery.min.js}"></script>
+    <script src="../../static/Portal/js/bootstrap.min.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/bootstrap.min.js}"></script>
+    <script src="../../static/Portal/js/main.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/main.js}"></script>
+</head>
+
+<body>
+
+<div th:fragment="header">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="row padding-10-0">
+                    <div class="col-md-2  pull-left" style="line-height: 60px;">
+                        <a href="/"><img src="../../static/Portal/img/logo.png" width="150px" th:src="@{/Portal/img/logo.png}"/></a>
+                    </div>
+                    <div class="col-md-8 pull-right" style="margin-top: 0.5rem;">
+                        <ul class="nav nav-pills pull-right">
+                            <li role="presentation" class="margin-0-20" th:class="${nowPoint == 'index'? 'active':''}">
+                                <a href="/">首页</a>
+                            </li>
+                            <li role="presentation" class="dropdown margin-020" >
+                                <a class="dropdown-toggle" href="javascript:void(0)">
+                                    关于我们 <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu"  role="menu">
+                                    <li><a href="javascript:void(0)">公司简介</a></li>
+                                    <li><a href="javascript:void(0)">核心技术</a></li>
+                                    <li><a href="javascript:void(0)">团队实力</a></li>
+                                    <li><a href="javascript:void(0)">合作伙伴</a></li>
+                                    <li><a href="/contactUS">联系我们</a></li>
+                                </ul>
+                            </li>
+                            <li role="presentation"  class="dropdown margin-0-20" th:class="${nowPoint == 'product'? 'active':''}">
+                                <a class="dropdown-toggle" href="/PAS_1">
+                                    产品与服务 <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="/PAS_1">新生抗原筛选</a></li>
+                                    <li><a href="/PAS_2">基于新生抗原的肿瘤个体化精准免疫治疗</a></li>
+                                    <li><a href="/PAS_3">TMB/TNB检测</a></li>
+                                    <li><a href="/PAS_4">肿瘤精准用药指导</a></li>
+                                    <li><a href="/PAS_5">基于TMF的个体化肿瘤术后复发监测</a></li>
+                                    <li><a href="/PAS_6">肿瘤遗传易感分析</a></li>
+                                </ul>
+                            </li>
+                            <li role="presentation" class="margin-0-20" th:class="${nowPoint == 'joinUs'? 'active':''}">
+                                <a href="/joinUs">加入我们</a>
+                            </li>
+                            <li role="presentation" class="margin-0-20">
+                                <a href="javascript:void(0)">临床研究</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div style="height: 80px;">
+
+    </div>
+</div>
+
+
+</body>
+</html>

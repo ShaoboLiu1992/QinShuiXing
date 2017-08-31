@@ -1,0 +1,22 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+#identity *{
+    line-height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.login-logo{
+    font-family: FontAwesome,serif;
+    font-size: 25px !important;
+    text-align: center;
+    color: #eee;
+    margin-top: 60px;
+}
+
+body {
+	
+}
