@@ -2,9 +2,7 @@ package gene.helper;
 
 import org.odftoolkit.odfdom.converter.core.utils.IOUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -36,6 +34,11 @@ public class GetQinShuiHelper {
             case 2:
                 for(String st : strs){
                     list.add(parasBody2(st));
+                }
+                break;
+            case 3:
+                for(String st : strs){
+                    list.add(parasBody3(st));
                 }
                 break;
         }
@@ -140,5 +143,60 @@ public class GetQinShuiHelper {
             e.printStackTrace();
         }
         return  regex;
+    }
+
+    public static String parasBody3(String param) {
+        String regex = "";
+        String url = "http://crdd.osdd.net/raghava/toxinpred/pepsearch_S.php?seq=" + param + "&thval=0.0";
+        String body = sendGet(url);
+        Matcher matcher = Pattern.compile("http-equiv='refresh'\\s+content='0;url=(.*)'\\s+/>").matcher(body);
+        while(matcher.find()){
+            regex = matcher.group(1);
+        }
+        url = "http://crdd.osdd.net/raghava/toxinpred/" + regex;
+        body = sendGet(url);
+        matcher = Pattern.compile("<td align=center>(\\w+.\\w+)</td></tr>").matcher(body);
+        while(matcher.find()){
+            regex = matcher.group(1);
+            System.out.println(regex);
+            break;
+        }
+        return  regex;
+    }
+
+
+    public static String sendGet(String url) {
+        String result = "";
+        BufferedReader in = null;
+        try {
+            String urlNameString = url;
+            URL realUrl = new URL(urlNameString);
+            // 打开和URL之间的连接
+            URLConnection connection = realUrl.openConnection();
+            // 设置通用的请求属性
+            connection.setRequestProperty("accept", "*/*");
+            connection.setRequestProperty("connection", "Keep-Alive");
+            connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            // 建立实际的连接
+            connection.connect();
+            // 定义 BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+        }
+        // 使用finally块来关闭输入流
+        finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return result;
     }
 }
