@@ -4,12 +4,15 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<link rel="stylesheet" type="text/css" href="../static/Portal/css/bootstrap.css" th:href="@{/Portal/css/bootstrap.css}"/>
+		<link rel="stylesheet" type="text/css" href="../static/Portal/confirm/jquery-confirm.min.css" th:href="@{/Portal/confirm/jquery-confirm.min.css}"/>
 		<script src="../static/Portal/js/jquery-2.2.1.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/jquery-2.2.1.js}"></script>
 		<script src="../static/Portal/js/bootstrap.min.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/bootstrap.min.js}"></script>
 		<!--<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>-->
 		<script src="../static/Portal/js/vue.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/vue.js}"></script>
 		<script src="../static/Portal/js/main.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/main.js}"></script>
 		<script src="../static/Portal/js/spin.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/spin.js}"></script>
+		<script src="../static/Portal/confirm/jquery-confirm.min.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/confirm/jquery-confirm.min.js}"></script>
+
 		<title></title>
 		<style>
 			.shuoming{
@@ -44,6 +47,28 @@
 				background: rgba(200,200,200,0.5);
 				z-index: 1;
 				display: none;
+			}
+			.legend {
+				vertical-align: bottom;
+				height: 30px;
+				margin-top: 50px
+			}
+
+			.legend li {
+				float: left;
+				margin-left: 2em;
+				color: #333;
+				font-weight: bold;
+			}
+
+			.legend li span {
+				width: 2em;
+				height: 1.3em;
+				display: inline-block;
+				background: #fff;
+				border: 1px solid #aaa;
+				vertical-align: middle;
+				list-style: none;
 			}
 		</style>
 	</head>
@@ -107,7 +132,7 @@
 					</div>
 					
 				</div>
-				<div class="col-lg-2 msgbox" >
+				<div class="col-lg-4 msgbox" >
 				</div>
 				
 			</div>

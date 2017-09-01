@@ -1,5 +1,6 @@
 package gene.helper;
 
+import gene.model.BackModel;
 import org.odftoolkit.odfdom.converter.core.utils.IOUtils;
 
 import java.io.*;
@@ -15,10 +16,10 @@ import java.util.regex.Pattern;
  */
 public class GetQinShuiHelper {
 
-    public static List<String> getQinShui(String params, Integer type) {
+    public static List<BackModel> getQinShui(String params, Integer type) {
 
         String[] strs = params.split(",");
-        List<String> list = new ArrayList<>();
+        List<BackModel> list = new ArrayList<BackModel>();
 
         switch (type){
             case 0:
@@ -45,7 +46,8 @@ public class GetQinShuiHelper {
         return list;
     }
 
-    public static String parasBody0(String param) {
+    public static BackModel parasBody0(String param) {
+        BackModel backModel = new BackModel();
         String regex = "";
         try{
             // Configure and open a connection to the site you will send the request
@@ -76,10 +78,12 @@ public class GetQinShuiHelper {
         }catch(IOException e){
             e.printStackTrace();
         }
-        return  regex;
+        backModel.setData(regex);
+        return  backModel;
     }
 
-    public static String parasBody1(String param) {
+    public static BackModel parasBody1(String param) {
+        BackModel backModel = new BackModel();
         String regex = "";
         try{
             // Configure and open a connection to the site you will send the request
@@ -109,10 +113,12 @@ public class GetQinShuiHelper {
         }catch(IOException e){
             e.printStackTrace();
         }
-        return  regex;
+        backModel.setData(regex);
+        return  backModel;
     }
 
-    public static String parasBody2(String param) {
+    public static BackModel parasBody2(String param) {
+        BackModel backModel = new BackModel();
         String regex = "";
         try{
             // Configure and open a connection to the site you will send the request
@@ -139,13 +145,22 @@ public class GetQinShuiHelper {
                 regex = matcher.group(1);
                 System.out.println(regex);
             }
+            backModel.setData(regex);
+            matcher = Pattern.compile("<img src=\"(.*?)\"\\s+alt=\"Hydropathy\\s+plot,\\s+Hopp\\s+&\\s+Woods\"\\s+height=\"140\" width=\"580\"></td>").matcher(body);
+            while(matcher.find()){
+                regex = matcher.group(1);
+                System.out.println(regex);
+            }
+            backModel.setImgUrl("http://pepcalc.com/" + regex);
         }catch(IOException e){
             e.printStackTrace();
         }
-        return  regex;
+
+        return  backModel;
     }
 
-    public static String parasBody3(String param) {
+    public static BackModel parasBody3(String param) {
+        BackModel backModel = new BackModel();
         String regex = "";
         String url = "http://crdd.osdd.net/raghava/toxinpred/pepsearch_S.php?seq=" + param + "&thval=0.0";
         String body = sendGet(url);
@@ -161,7 +176,8 @@ public class GetQinShuiHelper {
             System.out.println(regex);
             break;
         }
-        return  regex;
+        backModel.setData(regex);
+        return  backModel;
     }
 
 

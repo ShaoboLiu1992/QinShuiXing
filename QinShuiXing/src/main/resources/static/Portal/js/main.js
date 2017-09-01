@@ -71,10 +71,20 @@ $(function () {
                                 bool = !bool;
                                 $(".msgbox").html("");
                                 $("textarea").text("");
-                                for(var i =0;i<data.length;i++){
-                                    $(".msgbox").append('<div class="form-group col-lg-10"><input class="form-control" value="'+data[i]+'" /></div>');
+                                var arr = [];
+                                if(urlindex==2){
+                                    for(var i =0;i<data.length;i++){
+                                        $(".msgbox").append('<div class="form-group col-lg-10"><div class="col-lg-6"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                        arr.push(data[i].data);
+                                    }
+                                }else {
+                                    for(var i =0;i<data.length;i++){
+                                        $(".msgbox").append('<div class="form-group col-lg-10"><div class="col-lg-6"><input class="form-control" value="'+data[i].data+'" /></div></div>');
+                                        arr.push(data[i].data);
+                                    }
                                 }
-                                $("textarea").show().text(data.join(","));
+
+                                $("textarea").show().text(arr.join(","));
                                 $("#firstDiv").hide();
                             },
                             error: function(){
@@ -115,8 +125,19 @@ $(function () {
     $(document).keypress(function(e) { var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode; if (eCode == 13){
         $(".search").click()
         }})
+    
+
 })
 
 
-
+function viewpic(url) {
+    $.dialog({
+        columnClass: 'col-md-8 col-md-offset-2',
+        title: 'Hydropathy',
+        content: '<div style="text-align: center"></div><img style="width: 100%" src="'+url+'"/><div class="legend"> <ul> <li>Acidic：<span style="background:#ffcocb "></span></li>' +
+        ' <li>Aromatic：<span style="background:#97fb98 "></span></li> <li>Basic：<span style="background: #00bfff"></span></li>' +
+        ' <li>Aliphatic：<span style="background: #c8c8c8"></span></li> <li>polar：<span style="background: #006000"></span></li>' +
+        ' <li>Cysteine：<span style="background: #ffff00"></span></li> </ul> </div></div>',
+    });
+}
 

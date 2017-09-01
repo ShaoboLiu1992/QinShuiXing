@@ -1,6 +1,7 @@
 package gene.controller;
 
 import gene.helper.GetQinShuiHelper;
+import gene.model.BackModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ public class MainController {
     @RequestMapping("/getQinShuiXing")
     @ResponseBody
     public Object getQinShuiXing(String params, Integer type){
-        List<String> list = GetQinShuiHelper.getQinShui(params, type);
+        List<BackModel> list = GetQinShuiHelper.getQinShui(params, type);
         return list;
     }
 }
