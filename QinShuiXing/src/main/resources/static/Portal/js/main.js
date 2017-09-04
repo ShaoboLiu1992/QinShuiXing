@@ -134,7 +134,7 @@ function viewpic(url) {
     $.dialog({
         columnClass: 'col-md-8 col-md-offset-2',
         title: 'Hydropathy',
-        content: '<div style="text-align: center"></div><img style="width: 100%" src="'+url+'"/><div class="legend"> <ul> <li>Acidic：<span style="background:#ffcocb "></span></li>' +
+        content: '<div style="text-align: center"></div><img style="width: 100%" src="'+ (url==undefined?"javascript:void(0)":"/viewFile?fileUrl="+url) +'" /><div class="legend"> <ul> <li>Acidic：<span style="background:#ffcocb "></span></li>' +
         ' <li>Aromatic：<span style="background:#97fb98 "></span></li> <li>Basic：<span style="background: #00bfff"></span></li>' +
         ' <li>Aliphatic：<span style="background: #c8c8c8"></span></li> <li>polar：<span style="background: #006000"></span></li>' +
         ' <li>Cysteine：<span style="background: #ffff00"></span></li> </ul> </div></div>',

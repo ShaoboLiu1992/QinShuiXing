@@ -4,6 +4,7 @@ import gene.model.BackModel;
 import org.odftoolkit.odfdom.converter.core.utils.IOUtils;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -136,6 +137,17 @@ public class GetQinShuiHelper {
             out.flush();
             out.close();
 
+            String sessionId = "";
+            String cookieVal = "";
+            String key = null;
+            //取cookie
+            for(int i = 1; (key = urlConnection.getHeaderFieldKey(i)) != null; i++){
+                if(key.equalsIgnoreCase("set-cookie")){
+                    cookieVal = urlConnection.getHeaderField(i);
+                    cookieVal = cookieVal.substring(0, cookieVal.indexOf(";"));
+                    sessionId = sessionId + cookieVal + ";";
+                }
+            }
             // 从服务器读取响应
             InputStream inputStream = urlConnection.getInputStream();
             String encoding = urlConnection.getContentEncoding();
@@ -151,7 +163,7 @@ public class GetQinShuiHelper {
                 regex = matcher.group(1);
                 System.out.println(regex);
             }
-            backModel.setImgUrl("http://pepcalc.com/" + regex);
+            backModel.setImgUrl(getImage("http://pepcalc.com/" + regex, cookieVal));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -196,6 +208,7 @@ public class GetQinShuiHelper {
             // 建立实际的连接
             connection.connect();
             // 定义 BufferedReader输入流来读取URL的响应
+
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             while ((line = in.readLine()) != null) {
@@ -214,5 +227,42 @@ public class GetQinShuiHelper {
             }
         }
         return result;
+    }
+
+    public static String getImage(String url1, String cookie) {
+        String fileUrl = FileHelper.ROOT + UuidHelper.getUUID() + ".png";
+        URL url = null;
+        try {
+            url = new URL(url1);
+            URLConnection urlConnection = url.openConnection();
+            // 设置doOutput属性为true表示将使用此urlConnection写入数据
+            urlConnection.setDoOutput(true);
+            urlConnection.setRequestProperty("Cookie", cookie);
+            // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
+            urlConnection.setRequestProperty("content-type", "application/xhtml+xml");
+            // 得到请求的输出流对象
+            OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
+            // 把数据写入请求的Body
+            out.flush();
+            out.close();
+
+            // 从服务器读取响应
+            InputStream it = urlConnection.getInputStream();
+            File date = new File(fileUrl);
+            //打开流
+            OutputStream os = new FileOutputStream(date);
+            //文件拷贝
+            byte flush[]  = new byte[1024];
+            int len = 0;
+            while(0<=(len=it.read(flush))){
+                os.write(flush, 0, len);
+            }
+            //关闭流的注意 先打开的后关
+            os.close();
+            it.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fileUrl;
     }
 }

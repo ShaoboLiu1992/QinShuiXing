@@ -8,7 +8,7 @@ import java.util.Random;
 public class RandomHelper {
 
     //生成随机数字和字母,
-    public String getStringRandom(int length) {
+    public static String getStringRandom(int length) {
         String val = "";
         Random random = new Random();
         //参数length，表示生成几位随机数
