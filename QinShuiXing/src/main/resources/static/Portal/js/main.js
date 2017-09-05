@@ -74,12 +74,12 @@ $(function () {
                                 var arr = [];
                                 if(urlindex==2){
                                     for(var i =0;i<data.length;i++){
-                                        $(".msgbox").append('<div class="form-group col-lg-10"><div class="col-lg-6"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                        $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
                                         arr.push(data[i].data);
                                     }
                                 }else {
                                     for(var i =0;i<data.length;i++){
-                                        $(".msgbox").append('<div class="form-group col-lg-10"><div class="col-lg-6"><input class="form-control" value="'+data[i].data+'" /></div></div>');
+                                        $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div></div>');
                                         arr.push(data[i].data);
                                     }
                                 }

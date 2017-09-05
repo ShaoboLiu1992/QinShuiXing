@@ -125,14 +125,18 @@
 			<div class="row " style="margin-top: 20px;">
 				<div class="col-lg-2 col-lg-offset-4" >
 					<div class="form-group text-right" v-if="reversedMessage" v-for="(value,index) in reversedMessage">
+						<div class="col-lg-1" style="height: 30px;line-height: 30px;">
+							{{index+1}}
+						</div>
 						<div class="col-lg-10">
 							<input type="" class="form-control value" v-bind:value="value" />
 						</div>
+
 						<i class="glyphicon glyphicon-arrow-right" style="height: 30px;line-height: 30px;"></i>
 					</div>
 					
 				</div>
-				<div class="col-lg-4 msgbox" >
+				<div class="col-lg-4 msgbox" style="padding: 0;">
 				</div>
 				
 			</div>
