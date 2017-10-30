@@ -1,6 +1,5 @@
 package gene.controller;
 
-import gene.helper.CommonHelper;
 import gene.helper.GetQinShuiHelper;
 import gene.model.BackModel;
 import org.springframework.stereotype.Controller;

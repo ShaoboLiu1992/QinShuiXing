@@ -2,7 +2,7 @@
 var myindex = 0;
 
 var bool = true;
-
+var mydata;
 $(function () {
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
@@ -35,7 +35,7 @@ $(function () {
             bool: "",
             url:"强耀生物",
             urlindex:"0",
-            urlList:{"0":"强耀生物","1":"ExPASy",'2':"INNOVAGEN","3":"ToxinPred"}
+            urlList:{"0":"强耀生物","1":"ExPASy",'2':"INNOVAGEN","3":"ToxinPred", "4":"SATPBD", "5":"ToxinPred-Batch"}
         },
         watch:{
             msg:function(mymsg){
@@ -68,20 +68,36 @@ $(function () {
                             },
                             dataType: "json",
                             success: function(data) {
+
                                 bool = !bool;
                                 $(".msgbox").html("");
                                 $("textarea").text("");
                                 var arr = [];
-                                if(urlindex==2){
-                                    for(var i =0;i<data.length;i++){
-                                        $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
-                                        arr.push(data[i].data);
-                                    }
-                                }else {
-                                    for(var i =0;i<data.length;i++){
-                                        $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div></div>');
-                                        arr.push(data[i].data);
-                                    }
+                                urlindex = parseInt(urlindex);
+                                switch (urlindex){
+                                    case 2:
+                                        for(var i =0;i<data.length;i++){
+                                            $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                            arr.push(data[i].data);
+                                        }
+                                        break;
+                                    case 4:
+                                        mydata = data;
+                                        for(var i =0;i<data.length;i++){
+                                            if(data[i].data==""){
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                            }else {
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-danger" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                            }
+                                        }
+                                        break;
+                                    default:
+                                        for(var i =0;i<data.length;i++){
+                                            $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div></div>');
+                                            arr.push(data[i].data);
+                                        }
+                                        break;
+
                                 }
 
                                 $("textarea").show().text(arr.join(","));
@@ -138,6 +154,14 @@ function viewpic(url) {
         ' <li>Aromatic：<span style="background:#97fb98 "></span></li> <li>Basic：<span style="background: #00bfff"></span></li>' +
         ' <li>Aliphatic：<span style="background: #c8c8c8"></span></li> <li>polar：<span style="background: #006000"></span></li>' +
         ' <li>Cysteine：<span style="background: #ffff00"></span></li> </ul> </div></div>',
+    });
+}
+
+function viewTable(index) {
+    $.dialog({
+        columnClass: 'col-lg-12',
+        title: '',
+        content:mydata[index].data ,
     });
 }
 

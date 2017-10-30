@@ -22,6 +22,7 @@ public class GetQinShuiHelper {
         String[] strs = params.split(",");
         List<BackModel> list = new ArrayList<BackModel>();
 
+
         switch (type){
             case 0:
                 for(String st : strs){
@@ -41,6 +42,16 @@ public class GetQinShuiHelper {
             case 3:
                 for(String st : strs){
                     list.add(parasBody3(st));
+                }
+                break;
+            case 4:
+                for(String st : strs){
+                    list.add(parasBody4(st));
+                }
+                break;
+            case 5:
+                for(String st : strs){
+                    list.add(parasBody5(st));
                 }
                 break;
         }
@@ -187,6 +198,95 @@ public class GetQinShuiHelper {
             regex = matcher.group(1);
             System.out.println(regex);
             break;
+        }
+        backModel.setData(regex);
+        return  backModel;
+    }
+
+
+    public static BackModel parasBody4(String param) {
+        BackModel backModel = new BackModel();
+        String regex = "";
+        OutputStreamWriter out = null;
+        try{
+            // Configure and open a connection to the site you will send the request
+            URL url = new URL("http://crdd.osdd.net/raghava/satpdb/searchaction.php");
+            URLConnection urlConnection = url.openConnection();
+            // 设置doOutput属性为true表示将使用此urlConnection写入数据
+            urlConnection.setDoOutput(true);
+            // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
+            urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+            // 得到请求的输出流对象
+            out = new OutputStreamWriter(urlConnection.getOutputStream());
+            // 把数据写入请求的Body
+            String params = "txt=" + param.toUpperCase() + "&anticancer=func&communication=subfunc&drug=fnumber&antibacterial=seqid&antifungal=seq";
+            out.write(params);
+            out.flush();
+            // 从服务器读取响应
+            InputStream inputStream = urlConnection.getInputStream();
+            String encoding = urlConnection.getContentEncoding();
+            String body = IOUtils.toString(inputStream, encoding);
+            body = body.replaceAll("\\n", "").replaceAll("href=\".*?\"","");
+            Matcher matcher = Pattern.compile("<thead>(.*)</table>").matcher(body);
+            while(matcher.find()){
+                regex = matcher.group(1);
+                regex = "<table border=\"1px\" cellspacing=\"0px\" class=\"table\" ><thead>" + regex + "</table>";
+                System.out.println(regex);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            if(out != null){
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        backModel.setData(regex);
+        return  backModel;
+    }
+
+    public static BackModel parasBody5(String param) {
+        BackModel backModel = new BackModel();
+        String regex = "";
+        OutputStreamWriter out = null;
+        try{
+            // Configure and open a connection to the site you will send the request
+            URL url = new URL("http://crdd.osdd.net/raghava/satpdb/searchaction.php");
+            URLConnection urlConnection = url.openConnection();
+            // 设置doOutput属性为true表示将使用此urlConnection写入数据
+            urlConnection.setDoOutput(true);
+            // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
+            urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+            // 得到请求的输出流对象
+            out = new OutputStreamWriter(urlConnection.getOutputStream());
+            // 把数据写入请求的Body
+            String params = "txt=" + param.toUpperCase() + "&anticancer=func&communication=subfunc&drug=fnumber&antibacterial=seqid&antifungal=seq";
+            out.write(params);
+            out.flush();
+            // 从服务器读取响应
+            InputStream inputStream = urlConnection.getInputStream();
+            String encoding = urlConnection.getContentEncoding();
+            String body = IOUtils.toString(inputStream, encoding);
+            body = body.replaceAll("\\n", "").replaceAll("href=\".*?\"","");
+            Matcher matcher = Pattern.compile("<thead>(.*)</table>").matcher(body);
+            while(matcher.find()){
+                regex = matcher.group(1);
+                regex = "<table border=\"1px\" cellspacing=\"0px\" class=\"table\" ><thead>" + regex + "</table>";
+                System.out.println(regex);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            if(out != null){
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         backModel.setData(regex);
         return  backModel;
