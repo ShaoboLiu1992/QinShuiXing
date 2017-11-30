@@ -73,15 +73,36 @@ $(function () {
                                 $(".msgbox").html("");
                                 $("textarea").text("");
                                 var arr = [];
+                                var arr1 = [];
                                 urlindex = parseInt(urlindex);
                                 switch (urlindex){
                                     case 2:
                                         for(var i =0;i<data.length;i++){
-                                            $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
                                             arr.push(data[i].data);
+                                            arr1.push(data[i].data);
                                         }
+                                        $("textarea").eq(1).show().text(arr1.join(","));
+                                        break;
+                                    case 3:
+                                        for(var i =0;i<data.length;i++){
+                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                            arr.push(data[i].data);
+                                            arr1.push(data[i].data);
+                                        }
+                                        $("textarea").eq(1).show().text(arr1.join(","));
                                         break;
                                     case 4:
+                                        mydata = data;
+                                        for(var i =0;i<data.length;i++){
+                                            if(data[i].data==""){
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                            }else {
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-danger" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                            }
+                                        }
+                                        break;
+                                    case 5:
                                         mydata = data;
                                         for(var i =0;i<data.length;i++){
                                             if(data[i].data==""){
@@ -97,10 +118,8 @@ $(function () {
                                             arr.push(data[i].data);
                                         }
                                         break;
-
                                 }
-
-                                $("textarea").show().text(arr.join(","));
+                                $("textarea").eq(0).show().text(arr.join(","));
                                 $("#firstDiv").hide();
                             },
                             error: function(){
