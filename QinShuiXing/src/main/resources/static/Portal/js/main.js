@@ -48,7 +48,7 @@ $(function () {
             },
             mssg:function(mymsg){
                 if(this.mssg==""){
-                    $(".msgbox").html("");
+                    $(".mssgbox").html("");
                     $("textarea").hide();
                 }
             }
@@ -125,7 +125,7 @@ $(function () {
                                         }
                                         break;
                                 }
-                                $("textarea").eq(0).show().text(arr.join(","));
+                                // $("textarea").eq(0).show().text(arr.join(","));
                                 $("#firstDiv").hide();
                             },
                             error: function(){
@@ -203,14 +203,22 @@ $(function () {
         }})
 
     $(".typechuange button").eq(0).click(function () {
-        $(".msgbox").show();
-        $(".mssgbox").hide();
+        $(".msgboxs").show();
+        $(".mssgboxs").hide();
+        $(".rowmsg").show();
+        $(".rowmssg").hide();
+        $(".msgbox").html("");
+        $("textarea").text("");
         $(this).addClass("btn-primary").removeClass("btn-default");
         $(this).siblings().addClass("btn-default").removeClass("btn-primary");
     })
     $(".typechuange button").eq(1).click(function () {
-        $(".mssgbox").show();
-        $(".msgbox").hide();
+        $(".mssgboxs").show();
+        $(".msgboxs").hide();
+        $(".rowmssg").show();
+        $(".rowmsg").hide();
+        $(".msgbox").html("");
+        $("textarea").text("");
         $(this).addClass("btn-primary").removeClass("btn-default");
         $(this).siblings().addClass("btn-default").removeClass("btn-primary");
     })
