@@ -13,5 +13,5 @@ public interface ImageService {
 
     int addImages(Image image);
 
-    Image getGeneExpressionOne(String queryField);
+    List<Image> getGeneExpressionOne(String queryField);
 }

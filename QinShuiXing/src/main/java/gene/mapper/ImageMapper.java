@@ -20,5 +20,5 @@ public interface ImageMapper {
 
     List<Image> getGeneExpression(@Param("list") List<String> list);
 
-    Image getGeneExpressionOne(@Param("queryField")String queryField);
+    List<Image> getGeneExpressionOne(@Param("queryField")String queryField);
 }

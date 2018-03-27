@@ -102,8 +102,22 @@ public class MainController {
 
 
         for(String str:strs){
-            Image image = imageService.getGeneExpressionOne(str.trim());
-            list1.add(image);
+            List<Image> images = imageService.getGeneExpressionOne(str.trim());
+            if(images.size() <= 0){
+                list1.add(null);
+            }else {
+                Map<String, String> map = new HashedMap();
+                for(Image im:images){
+                    if(im.getFileUrl().contains("protein_expression")){
+                        map.put("protein", im.getFileUrl());
+                    }
+                    if(im.getFileUrl().contains("gene_expression")){
+                        map.put("gene", im.getFileUrl());
+                    }
+                }
+                list1.add(map);
+            }
+
         }
         result.put("data", list1);
         return result;

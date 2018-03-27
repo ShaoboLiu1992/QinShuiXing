@@ -30,7 +30,7 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public Image getGeneExpressionOne(String queryField) {
+    public List<Image> getGeneExpressionOne(String queryField) {
         return imageMapper.getGeneExpressionOne(queryField);
     }
 }
