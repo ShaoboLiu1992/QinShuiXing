@@ -5,7 +5,9 @@
 		<meta charset="UTF-8"/>
 		<link rel="stylesheet" type="text/css" href="../static/Portal/css/bootstrap.css" th:href="@{/Portal/css/bootstrap.css}"/>
 		<link rel="stylesheet" type="text/css" href="../static/Portal/confirm/jquery-confirm.min.css" th:href="@{/Portal/confirm/jquery-confirm.min.css}"/>
+		<link rel="stylesheet" type="text/css" href="../static/Portal/css/bootstrap-switch.css" th:href="@{/Portal/css/bootstrap-switch.css}"/>
 		<script src="../static/Portal/js/jquery-2.2.1.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/jquery-2.2.1.js}"></script>
+		<script src="../static/Portal/js/bootstrap-switch.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/bootstrap-switch.js}"></script>
 		<script src="../static/Portal/js/bootstrap.min.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/bootstrap.min.js}"></script>
 		<!--<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>-->
 		<script src="../static/Portal/js/vue.js" type="text/javascript" charset="utf-8" th:src="@{/Portal/js/vue.js}"></script>
@@ -78,10 +80,17 @@
 			td{
 				text-align: center;
 			}
+			.mssgbox{
+				display: none;
+			}
 		</style>
 	</head>
 
 	<body style="background: url(Portal/img/bg.jpg);">
+	<div  class="btn-group typechuange" style="position: fixed; top: 10px;right: 20px">
+		<button type="button" class="btn btn-primary">亲水性</button>
+		<button type="button" class="btn btn-default">基因检索</button>
+	</div>
 	<div id="firstDiv" >
 	</div>
 	<div class="shuoming">
@@ -101,7 +110,7 @@
 	</div>
 
 		<div style="padding: 100px 100px 10px;" id="app" >
-			<div class="bs-example bs-example-form" role="form">
+			<div class="bs-example bs-example-form msgbox" role="form" >
 				<div class="row">
 					<div class="col-lg-6 col-lg-offset-3">
 						<div class="input-group has-success">
@@ -129,7 +138,25 @@
 				</div>
 				<!-- /.row -->
 			</div>
+			<div class="bs-example bs-example-form mssgbox" role="form">
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3">
+						<div class="input-group has-success">
+							<input type="text" class="form-control mssg" v-model="mssg" />
+							<span class="input-group-btn">
+								<button class="btn btn-success searchMssg"  v-on:click="searchMssg"  type="button">
+									search
+								</button>
+							</span>
 
+						</div>
+
+						<!-- /input-group -->
+					</div>
+					<!-- /.col-lg-6 -->
+				</div>
+				<!-- /.row -->
+			</div>
 			<div class="row " style="margin-top: 20px;">
 				<div class="col-lg-2 col-lg-offset-4" >
 					<div class="form-group text-right" v-if="reversedMessage" v-for="(value,index) in reversedMessage">
@@ -146,9 +173,24 @@
 				</div>
 				<div class="col-lg-4 msgbox" style="padding: 0;">
 				</div>
-				
 			</div>
+			<div class="row " style="margin-top: 20px;">
+				<div class="col-lg-2 col-lg-offset-4" >
+					<div class="form-group text-right" v-if="reversedMssg" v-for="(value,index) in reversedMssg">
+						<div class="col-lg-1" style="height: 30px;line-height: 30px;">
+							{{index+1}}
+						</div>
+						<div class="col-lg-10">
+							<input type="" class="form-control value" v-bind:value="value" />
+						</div>
 
+						<i class="glyphicon glyphicon-arrow-right" style="height: 30px;line-height: 30px;"></i>
+					</div>
+
+				</div>
+				<div class="col-lg-4 msgbox" style="padding: 0;">
+				</div>
+			</div>
 			<div class="col-lg-4 col-lg-offset-4 ">
 				<textarea class="form-control" rows="3" cols="20"  style="display: none"></textarea>
 			</div>

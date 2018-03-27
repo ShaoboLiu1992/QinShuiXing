@@ -4,6 +4,7 @@ var myindex = 0;
 var bool = true;
 var mydata;
 $(function () {
+    $('#switch').bootstrapSwitch();
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
     var opts = {
@@ -32,6 +33,7 @@ $(function () {
         el: "#app",
         data: {
             msg: "",
+            mssg: "",
             bool: "",
             url:"强耀生物",
             urlindex:"0",
@@ -43,11 +45,16 @@ $(function () {
                     $(".msgbox").html("");
                     $("textarea").hide();
                 }
+            },
+            mssg:function(mymsg){
+                if(this.mssg==""){
+                    $(".msgbox").html("");
+                    $("textarea").hide();
+                }
             }
         },
         methods: {
             search: function() {
-
                 if(bool){
                     bool = !bool;
                     $("#firstDiv").show();
@@ -68,7 +75,6 @@ $(function () {
                             },
                             dataType: "json",
                             success: function(data) {
-
                                 bool = !bool;
                                 $(".msgbox").html("");
                                 $("textarea").text("");
@@ -129,8 +135,34 @@ $(function () {
                     }else{
                     }
                 }
-
-
+            },
+            searchMssg:function () {
+                $("#firstDiv").show();
+                var str = [];
+                $(".value").each(function(index, obj) {
+                    str.push($(obj).val());
+                });
+                if(str.length>0){
+                    $(".mssg").val(str.join(','));
+                    $.ajax({
+                        cache: false,
+                        type: 'GET',
+                        url: "/fileUrl",
+                        data:{
+                            params:str.join(','),
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            var list =data.data;
+                            for(var i =0;i<list.length;i++){
+                                $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4"><a class="btn btn-warning" onclick="viewmssgpic(\''+list[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                            }
+                        },
+                        error: function(){
+                            $("#firstDiv").hide();
+                        }
+                    });
+                }
             }
         },
         computed: {
@@ -141,6 +173,15 @@ $(function () {
                     this.bool == false
                 } else {
                     return this.msg.split(",")
+                }
+            },
+            // 计算属性的 getter
+            reversedMssg: function() {
+                // `this` 指向 vm 实例
+                if(this.mssg == "") {
+                    this.bool == false
+                } else {
+                    return this.mssg.split(",")
                 }
             }
         }
@@ -160,7 +201,19 @@ $(function () {
     $(document).keypress(function(e) { var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode; if (eCode == 13){
         $(".search").click()
         }})
-    
+
+    $(".typechuange button").eq(0).click(function () {
+        $(".msgbox").show();
+        $(".mssgbox").hide();
+        $(this).addClass("btn-primary").removeClass("btn-default");
+        $(this).siblings().addClass("btn-default").removeClass("btn-primary");
+    })
+    $(".typechuange button").eq(1).click(function () {
+        $(".mssgbox").show();
+        $(".msgbox").hide();
+        $(this).addClass("btn-primary").removeClass("btn-default");
+        $(this).siblings().addClass("btn-default").removeClass("btn-primary");
+    })
 
 })
 
@@ -176,6 +229,14 @@ function viewpic(url) {
     });
 }
 
+function viewmssgpic() {
+    $.dialog({
+        columnClass: 'col-md-8 col-md-offset-2',
+        title: 'Hydropathy',
+        content: '<div style="text-align: center"><img style="width: 100%" src="'+ (url==undefined?"javascript:void(0)":"/viewFile?fileUrl="+url) +'" /></div>',
+    });
+}
+
 function viewTable(index) {
     $.dialog({
         columnClass: 'col-lg-12',
@@ -183,4 +244,7 @@ function viewTable(index) {
         content:mydata[index].data ,
     });
 }
+
+
+
 
