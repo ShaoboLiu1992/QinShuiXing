@@ -2,6 +2,11 @@ package gene.controller;
 
 import gene.helper.GetQinShuiHelper;
 import gene.model.BackModel;
+import gene.model.Image;
+import gene.service.ImageService;
+import gene.vo.BaseResultVo;
+import org.apache.commons.collections.map.HashedMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +18,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -21,6 +28,9 @@ import java.util.List;
  */
 @Controller
 public class MainController {
+
+    @Autowired
+    private ImageService imageService;
 
     /**
      * 跳转主页面
@@ -70,6 +80,74 @@ public class MainController {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * 查找基因表达的图片
+     * @param params
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "getGeneExpression")
+    @ResponseBody
+    public Map<String, Object> getGeneExpression(String params) {
+
+        Map<String, Object> result = new HashedMap();
+        String[] strs = params.split(",");
+        List<String> list = new ArrayList<>();
+        List<Object> list1 = new ArrayList<>();
+//        for(String str:strs){
+//            list.add(str);
+//        }
+//        result.put("data", imageService.getGeneExpression(list));
+
+
+        for(String str:strs){
+            Image image = imageService.getGeneExpressionOne(str.trim());
+            list1.add(image);
+        }
+        result.put("data", list1);
+        return result;
+    }
+
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "readFiles")
+    @ResponseBody
+    public void readFiles() {
+
+
+        readAllFile("D:\\Users\\Administrator\\Desktop\\PNG\\PNG");
+
+    }
+
+    private int n =0;
+    public void readAllFile(String filepath) {
+        File file= new File(filepath);
+        if(!file.isDirectory()){
+            String fileName = file.getName();
+            Image image = new Image();
+            image.setFileUrl("uploadDir/geneExpression/" + fileName);
+            image.setQueryField(fileName.split("_")[2].toString());
+            imageService.addImages(image);
+            n++;
+            System.out.println(n);
+        }else if(file.isDirectory()){
+            System.out.println("文件");
+            String[] filelist=file.list();
+            for(int i = 0;i<filelist.length;i++){
+                File readfile = new File(filepath);
+                if (!readfile.isDirectory()) {
+                    String fileName = file.getName();
+                    Image image = new Image();
+                    image.setFileUrl("uploadDir/geneExpression/" + fileName);
+                    image.setQueryField(fileName.split("_")[2].toString());
+                    imageService.addImages(image);
+                    n++;
+                    System.out.println(n);
+                } else if (readfile.isDirectory()) {
+                    readAllFile(filepath + "\\" + filelist[i]);//递归
+                }
+            }
+        }
     }
 }
