@@ -77,6 +77,8 @@ public class GetQinShuiHelper {
             URLConnection urlConnection = url.openConnection();
             // 设置doOutput属性为true表示将使用此urlConnection写入数据
             urlConnection.setDoOutput(true);
+            urlConnection.setConnectTimeout(300000);
+            urlConnection.setReadTimeout(300000);
             // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
             urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
             // 得到请求的输出流对象
@@ -113,6 +115,8 @@ public class GetQinShuiHelper {
             URLConnection urlConnection = url.openConnection();
             // 设置doOutput属性为true表示将使用此urlConnection写入数据
             urlConnection.setDoOutput(true);
+            urlConnection.setConnectTimeout(300000);
+            urlConnection.setReadTimeout(300000);
             // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
             urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
             // 得到请求的输出流对象
@@ -143,11 +147,14 @@ public class GetQinShuiHelper {
         BackModel backModel = new BackModel();
         String regex = "";
         try{
+            //设置代理
             // Configure and open a connection to the site you will send the request
-            URL url = new URL("http://pepcalc.com/ppc.php");
+            URL url = new URL("https://pepcalc.com/ppc.php");
             URLConnection urlConnection = url.openConnection();
             // 设置doOutput属性为true表示将使用此urlConnection写入数据
             urlConnection.setDoOutput(true);
+//            urlConnection.setConnectTimeout(300000);
+//            urlConnection.setReadTimeout(300000);
             // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
             urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
             // 得到请求的输出流对象
@@ -179,12 +186,18 @@ public class GetQinShuiHelper {
                 System.out.println(regex);
             }
             backModel.setData(regex);
+            matcher = Pattern.compile("Iso-electric\\s+point:</td>\\r\\n\\s+<td\\s+colspan=\"2\">(.*?)</td>").matcher(body);
+            while(matcher.find()){
+                regex = matcher.group(1);
+                System.out.println(regex);
+            }
+            backModel.setpI(regex);
             matcher = Pattern.compile("<img src=\"(.*?)\"\\s+alt=\"Hydropathy\\s+plot,\\s+Hopp\\s+&\\s+Woods\"\\s+height=\"140\" width=\"580\"></td>").matcher(body);
             while(matcher.find()){
                 regex = matcher.group(1);
                 System.out.println(regex);
             }
-            backModel.setImgUrl(getImage("http://pepcalc.com/" + regex, cookieVal));
+            backModel.setImgUrl(getImage("https://pepcalc.com/" + regex, cookieVal));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -199,7 +212,7 @@ public class GetQinShuiHelper {
         String body = "";
         String regex = "";
         Map<String, String> parameters = new HashedMap();
-        parameters.put("seq", "AAAA");
+        parameters.put("seq", param);
         parameters.put("eval", "10");
         parameters.put("thval", "0.0");
         parameters.put("method", "1");
@@ -231,7 +244,6 @@ public class GetQinShuiHelper {
             n++;
             System.out.println(regex);
         }
-        backModel.setData(regex);
         return  backModel;
     }
 
@@ -246,6 +258,8 @@ public class GetQinShuiHelper {
             URLConnection urlConnection = url.openConnection();
             // 设置doOutput属性为true表示将使用此urlConnection写入数据
             urlConnection.setDoOutput(true);
+            urlConnection.setConnectTimeout(300000);
+            urlConnection.setReadTimeout(300000);
             // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
             urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
             // 得到请求的输出流对象
@@ -289,7 +303,10 @@ public class GetQinShuiHelper {
             URL url = new URL("http://crdd.osdd.net/raghava/satpdb/searchaction.php");
             URLConnection urlConnection = url.openConnection();
             // 设置doOutput属性为true表示将使用此urlConnection写入数据
+            urlConnection.setConnectTimeout(300000);
+            urlConnection.setReadTimeout(300000);
             urlConnection.setDoOutput(true);
+            //*************************
             // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
             urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
             // 得到请求的输出流对象
@@ -334,6 +351,8 @@ public class GetQinShuiHelper {
             // 打开和URL之间的连接
             URLConnection connection = realUrl.openConnection();
             // 设置通用的请求属性
+            connection.setConnectTimeout(300000);
+            connection.setReadTimeout(300000);
             connection.setRequestProperty("accept", "*/*");
             connection.setRequestProperty("connection", "Keep-Alive");
             connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
@@ -370,6 +389,8 @@ public class GetQinShuiHelper {
             URLConnection urlConnection = url.openConnection();
             // 设置doOutput属性为true表示将使用此urlConnection写入数据
             urlConnection.setDoOutput(true);
+            urlConnection.setConnectTimeout(300000);
+            urlConnection.setReadTimeout(300000);
             urlConnection.setRequestProperty("Cookie", cookie);
             // 定义待写入数据的内容类型，我们设置为application/x-www-form-urlencoded类型
             urlConnection.setRequestProperty("content-type", "application/xhtml+xml");
@@ -399,12 +420,6 @@ public class GetQinShuiHelper {
         return fileUrl;
     }
 
-    public static void main(String[] args) {
-        GetQinShuiHelper getQinShuiHelper = new GetQinShuiHelper();
-
-
-    }
-
     public static String sendGet3(String url, String cookie) {
         String result = "";
         BufferedReader in = null;
@@ -418,7 +433,8 @@ public class GetQinShuiHelper {
             connection.setRequestProperty("connection", "Keep-Alive");
             connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             connection.setRequestProperty("Accept-Encoding", "gzip, deflate");
-
+            connection.setConnectTimeout(300000);
+            connection.setReadTimeout(300000);
             connection.setRequestProperty("Upgrade-Insecure-Requests", "1");
             connection.setRequestProperty("Referer", "http://crdd.osdd.net/raghava/toxinpred/pep_test.php");
             connection.setRequestProperty("Accept-Encoding", "gzip, deflate");
@@ -461,6 +477,8 @@ public class GetQinShuiHelper {
             connection.setDoInput(true);
             connection.setDoOutput(true);
             connection.setUseCaches(false);
+            connection.setConnectTimeout(300000);
+            connection.setReadTimeout(300000);
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Connection", "Keep-Alive");
             connection.setRequestProperty("Charset", "UTF-8");;
