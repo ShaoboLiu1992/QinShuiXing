@@ -83,6 +83,39 @@ public class MainController {
     }
 
     /**
+     * 文件预览，pdf或者图片
+     * @param fileUrl 文件路径
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "viewFile2")
+    @ResponseBody
+    public void viewTemplate2(String fileUrl, HttpServletResponse response) {
+
+        fileUrl = "uploadDir/geneExpression/" + fileUrl;
+        File file = new File(fileUrl);
+        //如果转图片的文件不存在则重新转
+        byte[] buffer = new byte[256];
+        InputStream is = null;
+        try {
+            is = new FileInputStream(file);
+            int nRead = 0;
+            while((nRead = is.read(buffer)) > 0){
+                response.getOutputStream().write(buffer, 0, nRead);
+            }
+            response.getOutputStream().flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                is.close();
+                response.getOutputStream().close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * 查找基因表达的图片
      * @param params
      * @return
@@ -108,11 +141,12 @@ public class MainController {
             }else {
                 Map<String, String> map = new HashedMap();
                 for(Image im:images){
+                    map.put("title", str.trim());
                     if(im.getFileUrl().contains("protein_expression")){
-                        map.put("protein", im.getFileUrl());
+                        map.put("protein", im.getFileUrl().split("/")[2]);
                     }
                     if(im.getFileUrl().contains("gene_expression")){
-                        map.put("gene", im.getFileUrl());
+                        map.put("gene", im.getFileUrl().split("/")[2]);
                     }
                 }
                 list1.add(map);
