@@ -78,17 +78,17 @@ $(function () {
                                 switch (urlindex){
                                     case 2:
                                         for(var i =0;i<data.length;i++){
-                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].Pi+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].pI+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
                                             arr.push(data[i].data);
-                                            arr1.push(data[i].Pi);
+                                            arr1.push(data[i].pI);
                                         }
                                         $("textarea").eq(1).show().text(arr1.join(","));
                                         break;
                                     case 3:
                                         for(var i =0;i<data.length;i++){
-                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].Pi+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].pI+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
                                             arr.push(data[i].data);
-                                            arr1.push(data[i].Pi);
+                                            arr1.push(data[i].pI);
                                         }
                                         $("textarea").eq(1).show().text(arr1.join(","));
                                         break;
