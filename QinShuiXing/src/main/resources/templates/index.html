@@ -80,7 +80,7 @@
 			td{
 				text-align: center;
 			}
-			.mssgbox{
+			.mssgboxs{
 				display: none;
 			}
 		</style>
@@ -110,7 +110,7 @@
 	</div>
 
 		<div style="padding: 100px 100px 10px;" id="app" >
-			<div class="bs-example bs-example-form msgbox" role="form" >
+			<div class="bs-example bs-example-form msgboxs" role="form" >
 				<div class="row">
 					<div class="col-lg-6 col-lg-offset-3">
 						<div class="input-group has-success">
@@ -138,7 +138,7 @@
 				</div>
 				<!-- /.row -->
 			</div>
-			<div class="bs-example bs-example-form mssgbox" role="form">
+			<div class="bs-example bs-example-form mssgboxs" role="form">
 				<div class="row">
 					<div class="col-lg-6 col-lg-offset-3">
 						<div class="input-group has-success">
@@ -157,7 +157,7 @@
 				</div>
 				<!-- /.row -->
 			</div>
-			<div class="row " style="margin-top: 20px;">
+			<div class="row rowmsg" style="margin-top: 20px;">
 				<div class="col-lg-2 col-lg-offset-4" >
 					<div class="form-group text-right" v-if="reversedMessage" v-for="(value,index) in reversedMessage">
 						<div class="col-lg-1" style="height: 30px;line-height: 30px;">
@@ -174,7 +174,7 @@
 				<div class="col-lg-4 msgbox" style="padding: 0;">
 				</div>
 			</div>
-			<div class="row " style="margin-top: 20px;">
+			<div class="row rowmssg" style="margin-top: 20px;">
 				<div class="col-lg-2 col-lg-offset-4" >
 					<div class="form-group text-right" v-if="reversedMssg" v-for="(value,index) in reversedMssg">
 						<div class="col-lg-1" style="height: 30px;line-height: 30px;">
@@ -183,12 +183,11 @@
 						<div class="col-lg-10">
 							<input type="" class="form-control value" v-bind:value="value" />
 						</div>
-
 						<i class="glyphicon glyphicon-arrow-right" style="height: 30px;line-height: 30px;"></i>
 					</div>
 
 				</div>
-				<div class="col-lg-4 msgbox" style="padding: 0;">
+				<div class="col-lg-4 mssgbox" style="padding: 0;">
 				</div>
 			</div>
 			<div class="col-lg-4 col-lg-offset-4 ">
