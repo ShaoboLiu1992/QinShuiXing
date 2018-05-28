@@ -138,6 +138,7 @@ $(function () {
             },
             searchMssg:function () {
                 $("#firstDiv").show();
+                $(".mssgbox").html("");
                 var str = [];
                 $(".value").each(function(index, obj) {
                     str.push($(obj).val());
@@ -147,7 +148,7 @@ $(function () {
                     $.ajax({
                         cache: false,
                         type: 'GET',
-                        url: "/fileUrl",
+                        url: "/getGeneExpression",
                         data:{
                             params:str.join(','),
                         },
@@ -155,8 +156,13 @@ $(function () {
                         success: function(data) {
                             var list =data.data;
                             for(var i =0;i<list.length;i++){
-                                $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0;margin-bottom: 14px"><div class="col-lg-4"><a class="btn btn-warning " onclick="viewmssgpic(\''+list[i].imgUrl+'\',this)">Hydropathy</a></div></div>');
-                            }
+                                if(list[i]==null){
+                             $(".mssgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4"><a class="btn btn-danger">鏃犳暟鎹®</a></div></div>');
+                                    }else {
+                                    $(".mssgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4"><a  class="btn btn-warning margin-right-10" style="'+(list[i].gene==undefined?"display:none":"display:block")+'"  onclick="viewmssgpic(\''+list[i].gene+'\',\''+list[i].title+'\');" >gene</a></div><div class="col-lg-4"><a class="btn btn-warning" style="'+(list[i].protein==undefined?"display:none":"display:block")+'"  onclick="viewmssgpic(\''+list[i].protein+'\',\''+list[i].title+'\')" >protein</a></div></div>');
+                                }
+                            } $("#firstDiv").hide();
+
                         },
                         error: function(){
                             $("#firstDiv").hide();
@@ -239,15 +245,13 @@ function viewpic(url,el) {
     });
 }
 
-function viewmssgpic(el) {
-    $(".view").css("color","#fff");
-    $(el).css("color","blue");
-    $.dialog({
-        columnClass: 'col-md-8 col-md-offset-2',
-        title: 'Hydropathy',
-        content: '<div style="text-align: center"><img style="width: 100%" src="'+ (url==undefined?"javascript:void(0)":"/viewFile?fileUrl="+url) +'" /></div>',
+    function viewmssgpic(url,title) {
+        $.dialog({
+                columnClass: 'col-md-8 col-md-offset-2',
+                  title: title,
+           content: '<div style="text-align: center"><img style="width: 100%" src="'+ (url==undefined?"javascript:void(0)":"/viewFile2?fileUrl="+url) +'" /></div>',
     });
-}
+    }
 
 function viewTable(index,el) {
     $(".view").css("color","#fff");
