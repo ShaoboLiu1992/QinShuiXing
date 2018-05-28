@@ -84,7 +84,7 @@ $(function () {
                                 switch (urlindex){
                                     case 2:
                                         for(var i =0;i<data.length;i++){
-                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].pI+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0;;margin-bottom: 14px"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].pI+'" /></div><div class="col-lg-4"><a class="btn btn-warning view" onclick="viewpic(\''+data[i].imgUrl+'\',this)">Hydropathy</a></div></div>');
                                             arr.push(data[i].data);
                                             arr1.push(data[i].pI);
                                         }
@@ -92,7 +92,7 @@ $(function () {
                                         break;
                                     case 3:
                                         for(var i =0;i<data.length;i++){
-                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].pI+'" /></div><div class="col-lg-4"><a class="btn btn-warning" onclick="viewpic(\''+data[i].imgUrl+'\')">Hydropathy</a></div></div>');
+                                            $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0;margin-bottom: 14px"><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div><div class="col-lg-4" style="padding: 0"><input class="form-control" value="'+data[i].pI+'" /></div><div class="col-lg-4"><a class="btn btn-warning view" onclick="viewpic(\''+data[i].imgUrl+'\',this)">Hydropathy</a></div></div>');
                                             arr.push(data[i].data);
                                             arr1.push(data[i].pI);
                                         }
@@ -102,9 +102,9 @@ $(function () {
                                         mydata = data;
                                         for(var i =0;i<data.length;i++){
                                             if(data[i].data==""){
-                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0;margin-bottom: 14px"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-warning view" onclick="viewTable(\''+i+'\',this)">Hydropathy</a></div></div>');
                                             }else {
-                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-danger" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0;margin-bottom: 14px"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-danger view" onclick="viewTable(\''+i+'\',this)">Hydropathy</a></div></div>');
                                             }
                                         }
                                         break;
@@ -112,20 +112,20 @@ $(function () {
                                         mydata = data;
                                         for(var i =0;i<data.length;i++){
                                             if(data[i].data==""){
-                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-warning" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0;margin-bottom: 14px"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-warning view" onclick="viewTable(\''+i+'\',this)">Hydropathy</a></div></div>');
                                             }else {
-                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-danger" onclick="viewTable(\''+i+'\')">Hydropathy</a></div></div>');
+                                                $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0;margin-bottom: 14px"><div class="col-lg-6" style="padding: 0"><input class="form-control" /></div><div class="col-lg-6"><a class="btn btn-danger view" onclick="viewTable(\''+i+'\',this)">Hydropathy</a></div></div>');
                                             }
                                         }
                                         break;
                                     default:
                                         for(var i =0;i<data.length;i++){
-                                            $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div></div>');
+                                            $(".msgbox").append('<div class="form-group col-lg-8" style="padding: 0;margin-bottom: 14px"><div class="col-lg-6" style="padding: 0"><input class="form-control" value="'+data[i].data+'" /></div></div>');
                                             arr.push(data[i].data);
                                         }
                                         break;
                                 }
-                                // $("textarea").eq(0).show().text(arr.join(","));
+                                $("textarea").eq(0).show().text(arr.join(","));
                                 $("#firstDiv").hide();
                             },
                             error: function(){
@@ -138,7 +138,6 @@ $(function () {
             },
             searchMssg:function () {
                 $("#firstDiv").show();
-                $(".mssgbox").html("");
                 var str = [];
                 $(".value").each(function(index, obj) {
                     str.push($(obj).val());
@@ -148,7 +147,7 @@ $(function () {
                     $.ajax({
                         cache: false,
                         type: 'GET',
-                        url: "/getGeneExpression",
+                        url: "/fileUrl",
                         data:{
                             params:str.join(','),
                         },
@@ -156,13 +155,8 @@ $(function () {
                         success: function(data) {
                             var list =data.data;
                             for(var i =0;i<list.length;i++){
-                                if(list[i]==null){
-                                    $(".mssgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4"><a class="btn btn-danger">无数据</a></div></div>');
-                                }else {
-                                    $(".mssgbox").append('<div class="form-group col-lg-10" style="padding: 0"><div class="col-lg-4"><a  class="btn btn-warning margin-right-10" style="'+(list[i].gene==undefined?"display:none":"display:block")+'"  onclick="viewmssgpic(\''+list[i].gene+'\',\''+list[i].title+'\');" >gene</a></div><div class="col-lg-4"><a class="btn btn-warning" style="'+(list[i].protein==undefined?"display:none":"display:block")+'"  onclick="viewmssgpic(\''+list[i].protein+'\',\''+list[i].title+'\')" >protein</a></div></div>');
-                                }
+                                $(".msgbox").append('<div class="form-group col-lg-10" style="padding: 0;margin-bottom: 14px"><div class="col-lg-4"><a class="btn btn-warning " onclick="viewmssgpic(\''+list[i].imgUrl+'\',this)">Hydropathy</a></div></div>');
                             }
-                            $("#firstDiv").hide();
                         },
                         error: function(){
                             $("#firstDiv").hide();
@@ -232,7 +226,9 @@ $(function () {
 })
 
 
-function viewpic(url) {
+function viewpic(url,el) {
+    $(".view").css("color","#fff");
+    $(el).css("color","blue");
     $.dialog({
         columnClass: 'col-md-8 col-md-offset-2',
         title: 'Hydropathy',
@@ -243,15 +239,19 @@ function viewpic(url) {
     });
 }
 
-function viewmssgpic(url,title) {
+function viewmssgpic(el) {
+    $(".view").css("color","#fff");
+    $(el).css("color","blue");
     $.dialog({
         columnClass: 'col-md-8 col-md-offset-2',
-        title: title,
-        content: '<div style="text-align: center"><img style="width: 100%" src="'+ (url==undefined?"javascript:void(0)":"/viewFile2?fileUrl="+url) +'" /></div>',
+        title: 'Hydropathy',
+        content: '<div style="text-align: center"><img style="width: 100%" src="'+ (url==undefined?"javascript:void(0)":"/viewFile?fileUrl="+url) +'" /></div>',
     });
 }
 
-function viewTable(index) {
+function viewTable(index,el) {
+    $(".view").css("color","#fff");
+    $(el).css("color","blue");
     $.dialog({
         columnClass: 'col-lg-12',
         title: '',
