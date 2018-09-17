@@ -63,6 +63,7 @@ public class MainController {
         //如果转图片的文件不存在则重新转
         byte[] buffer = new byte[256];
         InputStream is = null;
+//        response.setHeader("Content-Type","image/png");
         try {
             is = new FileInputStream(file);
             int nRead = 0;

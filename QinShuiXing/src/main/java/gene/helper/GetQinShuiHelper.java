@@ -217,6 +217,7 @@ public class GetQinShuiHelper {
         parameters.put("thval", "0.0");
         parameters.put("method", "1");
         parameters.put("field[]", "12");
+
         Map<String, Object> map = null;
         map = executePostByUsual("http://crdd.osdd.net/raghava/toxinpred/pep_test.php" ,parameters);
 
@@ -224,7 +225,9 @@ public class GetQinShuiHelper {
         while(matcher.find()){
             regex = matcher.group(1);
         }
-        body = sendGet3("http://crdd.osdd.net/raghava/toxinpred/" + regex, map.get("cookie").toString());
+        System.out.println("http://crdd.osdd.net/raghava/toxinpred/" + regex);
+        body = sendGet3("http://crdd.osdd.net/raghava/toxinpred/submitfreq_S.php?ran=54501", map.get("cookie").toString());
+
         matcher = Pattern.compile("<td align=center>(.*?)</td>").matcher(body);
         int n = 1;
         while(matcher.find()){
