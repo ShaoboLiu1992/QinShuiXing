@@ -3,6 +3,7 @@ QinShuiXing/target
 QinShuiXing/uploadDir
 QinShuiXing/src/main/resources/application.properties
 QinShuiXing/log
+QinShuiXing/*.log
 .idea
 .DS_Store
 .AppleDouble

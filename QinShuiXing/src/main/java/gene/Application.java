@@ -15,6 +15,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,7 +28,7 @@ import javax.sql.DataSource;
 
 @ServletComponentScan
 @EnableAutoConfiguration
-@SpringBootApplication
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 @ComponentScan
 @MapperScan("gene/mapper")
 public class Application {
@@ -102,8 +104,6 @@ public class Application {
                     Files.createDirectory(Paths.get(temp));
                 }
             }
-            //FileSystemUtils.deleteRecursively(new File(FileUploadController.ROOT));
-            //Files.createDirectory(Paths.get(FileUploadController.ROOT));
         };
     }
 
@@ -111,8 +111,6 @@ public class Application {
 
 
     public static void main(String[] args) {
-        //test wordhelper
-        //WordHelper.example();
         SpringApplication.run(Application.class, args);
     }
 
